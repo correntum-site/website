@@ -1,0 +1,107 @@
+@import "./tokens.css";
+
+/* Inter, self hosted. Weights: Regular 400, Medium 500, SemiBold 600, Bold 700.
+   Latin subset only: the copy is English, and this keeps the font payload small
+   for the mobile performance budget. */
+@import "@fontsource/inter/latin-400.css";
+@import "@fontsource/inter/latin-500.css";
+@import "@fontsource/inter/latin-600.css";
+@import "@fontsource/inter/latin-700.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    background-color: var(--ink);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--ink);
+    color: var(--text);
+    font-family: var(--font);
+    font-optical-sizing: auto;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Lenis: keep native scroll behaviour off so the library owns the motion. */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  ::selection {
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--paper);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Remove focus ring for mouse users, keep it for keyboard. */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+@layer components {
+  /* Reveal primitive initial state. GSAP animates to the resting state.
+     transform and opacity only, GPU friendly, no layout. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    will-change: transform, opacity;
+  }
+
+  .reveal-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Section rhythm. */
+  .section {
+    padding-block: clamp(6rem, 14vh, 11rem);
+  }
+
+  .container-page {
+    width: 100%;
+    max-width: 76rem;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 5vw, 3rem);
+  }
+}
+
+/* Reduced motion: no translate, no parallax, no idle rotation.
+   Every reveal collapses to a short opacity cross fade. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 0;
+    transform: none;
+    transition: opacity 0.25s var(--ease-out);
+  }
+
+  .reveal-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  * {
+    scroll-behavior: auto !important;
+  }
+}

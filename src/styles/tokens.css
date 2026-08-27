@@ -1,0 +1,26 @@
+:root {
+  /* brand, absolute */
+  --ink: #131313;      /* dominant background */
+  --paper: #fffeff;    /* text and the mark, stays pure */
+
+  /* depth ramp: NON-TEXT ONLY (raised matte surfaces, hairlines, recesses) */
+  --surface-1: rgba(255, 254, 255, 0.03);
+  --surface-2: rgba(255, 254, 255, 0.06);
+  --hairline: rgba(255, 254, 255, 0.1);
+  --recess: rgba(0, 0, 0, 0.45);
+  --chrome: rgba(19, 19, 19, 0.72); /* nav bar once scrolled: translucent ink */
+
+  /* text: primary stays pure white. one muted tier for tiny meta labels only */
+  --text: #fffeff;
+  --text-muted: rgba(255, 254, 255, 0.55); /* captions, footer legal only, never body */
+
+  /* type */
+  --font: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+
+  /* motion (from the animation reference, do not improvise these) */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);      /* enters and exits */
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);  /* on-screen movement */
+  --reveal-dur: 0.7s;                               /* marketing reveal */
+  --stagger: 60ms;
+}
