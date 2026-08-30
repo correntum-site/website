@@ -14,6 +14,15 @@
   --text: #fffeff;
   --text-muted: rgba(255, 254, 255, 0.55); /* captions, footer legal only, never body */
 
+  /* Flag states. The ONLY chromatic accents on the site, and only on the
+     /see-it-work walkthrough, only for state indication. Muted on purpose,
+     never neon. Do not use these anywhere else. */
+  --flag-blocks: #b8564c;                    /* blocks: a muted brick red */
+  --flag-look: #c1923f;                      /* needs a look: a muted amber */
+  --flag-clean: rgba(255, 254, 255, 0.42);   /* clean: neutral, from the ramp */
+  --flag-blocks-wash: rgba(184, 86, 76, 0.14);
+  --flag-look-wash: rgba(193, 146, 63, 0.16);
+
   /* type */
   --font: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif;

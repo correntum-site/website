@@ -85,6 +85,103 @@
     margin-inline: auto;
     padding-inline: clamp(1.25rem, 5vw, 3rem);
   }
+
+  /* Hero phone. Solid and flat, depth ramp only: a filled matte body, a
+     hairline bezel, a soft recess shadow, a real --ink screen sitting a shade
+     below the body. The body never moves; the screen content builds in three
+     scrubbed steps (transform and opacity only) from HeroPhone.jsx. */
+  .hero-phone-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-block: 1rem;
+  }
+
+  .hero-phone {
+    width: clamp(11rem, 44vw, 15rem);
+    aspect-ratio: 9 / 18.6;
+    padding: 0.5rem;
+    border-radius: 2.6rem;
+    /* Opaque: the surface gradient sits on an --ink base so the body reads as
+       a solid device regardless of what is behind it. */
+    background: linear-gradient(160deg, var(--surface-2), var(--surface-1)),
+      var(--ink);
+    border: 1px solid var(--hairline);
+    box-shadow:
+      0 8px 20px -10px var(--recess),
+      0 40px 70px -30px var(--recess),
+      inset 0 1px 0 var(--surface-2);
+  }
+
+  .hero-phone-screen {
+    position: relative;
+    display: grid;
+    place-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 14% 9%;
+    border-radius: 2.1rem;
+    background: var(--ink);
+    /* A hairline ring plus a soft recess so the screen edge reads against the
+       slightly lighter body. */
+    box-shadow:
+      inset 0 0 0 1px var(--hairline),
+      inset 0 3px 14px var(--recess);
+  }
+
+  .hero-phone-notch {
+    position: absolute;
+    top: 0.6rem;
+    left: 50%;
+    width: 34%;
+    height: 1rem;
+    transform: translateX(-50%);
+    border-radius: 999px;
+    background: var(--surface-1);
+    border: 1px solid var(--hairline);
+  }
+
+  .hero-phone-stack {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(0.4rem, 2.4vw, 0.6rem);
+    text-align: center;
+  }
+
+  .hero-phone-mark {
+    display: block;
+    width: 42%;
+    color: var(--paper);
+    /* --paper at a low alpha, same idea as the depth ramp, nothing loud. */
+    filter: drop-shadow(0 0 14px rgba(255, 254, 255, 0.1));
+    will-change: transform;
+  }
+
+  .hero-phone-word {
+    font-size: clamp(0.78rem, 3.4vw, 0.95rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    will-change: transform, opacity;
+  }
+
+  .hero-phone-tagline {
+    max-width: 92%;
+    font-size: clamp(0.6rem, 2.8vw, 0.72rem);
+    line-height: 1.35;
+    letter-spacing: -0.005em;
+    color: var(--text);
+    will-change: transform, opacity;
+  }
+
+  @media (min-width: 768px) {
+    .hero-phone-stage {
+      justify-content: flex-end;
+    }
+  }
 }
 
 /* Reduced motion: no translate, no parallax, no idle rotation.

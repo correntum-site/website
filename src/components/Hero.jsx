@@ -1,37 +1,16 @@
-import { Suspense, lazy, useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { gsap, EASE_OUT, REVEAL_DUR, STAGGER } from "../lib/motion";
 import { useReducedMotion } from "../hooks/useReducedMotion";
-import { Mark } from "./Mark";
+import { HeroPhone } from "./HeroPhone";
 
-// The 3D stack is a separate chunk. It only mounts when WebGL is available and
-// motion is allowed. Everything below works with no 3D at all.
-const HeroMark = lazy(() =>
-  import("./HeroMark").then((m) => ({ default: m.HeroMark }))
-);
-
-function webglAvailable() {
-  if (typeof window === "undefined") return false;
-  try {
-    const canvas = document.createElement("canvas");
-    return !!(
-      window.WebGLRenderingContext &&
-      (canvas.getContext("webgl") || canvas.getContext("experimental-webgl"))
-    );
-  } catch {
-    return false;
-  }
-}
-
+// The headline, the sub-line, a quiet scroll cue, and a CSS faux-3D phone with
+// the Correntum mark inside. No WebGL: the phone is pure HTML and CSS, animated
+// on scroll by GSAP in HeroPhone.jsx. Everything here reads with no motion.
 export function Hero() {
   const reduced = useReducedMotion();
   const headlineRef = useRef(null);
   const subRef = useRef(null);
   const cueRef = useRef(null);
-  const [use3D, setUse3D] = useState(false);
-
-  useEffect(() => {
-    setUse3D(!reduced && webglAvailable());
-  }, [reduced]);
 
   useEffect(() => {
     const items = [headlineRef.current, subRef.current].filter(Boolean);
@@ -69,24 +48,9 @@ export function Hero() {
       className="relative flex min-h-[100svh] items-center overflow-hidden"
     >
       <div className="container-page grid w-full gap-y-12 pt-24 pb-28 md:grid-cols-[1fr_minmax(0,34rem)] md:items-center md:gap-x-12">
-        {/* The mark. Present from the first frame, never animated in from nothing. */}
+        {/* The phone. Present from the first frame, never animated in from nothing. */}
         <div className="order-1 md:order-2">
-          <div className="mx-auto aspect-[3/2] w-full max-w-[26rem] md:mx-0">
-            {use3D ? (
-              <Suspense
-                fallback={
-                  <Mark
-                    className="h-full w-full text-paper"
-                    title="Correntum"
-                  />
-                }
-              >
-                <HeroMark />
-              </Suspense>
-            ) : (
-              <Mark className="h-full w-full text-paper" title="Correntum" />
-            )}
-          </div>
+          <HeroPhone reduced={reduced} />
         </div>
 
         <div className="order-2 md:order-1">

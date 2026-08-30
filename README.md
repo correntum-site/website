@@ -11,6 +11,16 @@ npm run build      # -> dist/
 npm run preview    # serve the build
 ```
 
+## Routes
+
+- `/` the landing page
+- `/see-it-work` a scroll-driven walkthrough of one exception (INV-88214),
+  rebuilt in HTML, on representative sample data
+
+Routing is a tiny history-API router in `src/lib/router.jsx`, no library.
+Static hosts need an SPA fallback so a hard load of `/see-it-work` serves
+`index.html`: `public/_redirects` (Netlify) and `vercel.json` (Vercel) are in.
+
 ## Stack
 
 - React + Vite
@@ -33,6 +43,10 @@ npm run preview    # serve the build
 
 No pricing. No invented metrics. No claimed clients, case studies or
 partnerships. No em or en dashes. No tax reference number.
+
+Two brand colours plus the depth ramp everywhere, with one exception: the
+three muted flag states (red / amber / neutral) in `src/styles/tokens.css`,
+used only on `/see-it-work`, only for state indication.
 
 ## TODO before launch
 

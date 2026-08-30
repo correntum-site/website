@@ -63,6 +63,10 @@ export function scrollToTarget(target, options = {}) {
     lenis.scrollTo(target, { offset: 0, ...options });
     return;
   }
+  if (typeof target === "number") {
+    window.scrollTo(0, target);
+    return;
+  }
   const el =
     typeof target === "string" ? document.querySelector(target) : target;
   el?.scrollIntoView({ behavior: "auto", block: "start" });

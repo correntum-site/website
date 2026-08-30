@@ -16,6 +16,12 @@ export default {
       hairline: "var(--hairline)",
       recess: "var(--recess)",
       chrome: "var(--chrome)",
+      // Flag states: /see-it-work walkthrough only, only for state indication.
+      "flag-blocks": "var(--flag-blocks)",
+      "flag-look": "var(--flag-look)",
+      "flag-clean": "var(--flag-clean)",
+      "flag-blocks-wash": "var(--flag-blocks-wash)",
+      "flag-look-wash": "var(--flag-look-wash)",
     },
     fontFamily: {
       sans: "var(--font)",

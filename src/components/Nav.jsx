@@ -1,10 +1,27 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Mark } from "./Mark";
+import { Link, useRouter } from "../lib/router";
+import { scrollToTarget } from "../lib/lenis";
+import { navLink } from "../lib/ui";
+
+const AUDIT_ID = "book-an-audit";
+// Leaves room for the fixed nav when Lenis drives the jump; the section's
+// scroll-mt covers the native (reduced motion) path.
+const AUDIT_OFFSET = -96;
 
 // Fixed, minimal. Transparent over the hero, then a translucent ink bar with a
 // backdrop blur and a faint hairline once scrolled past the hero. No heavy bar.
+// On /see-it-work there is no hero behind it, so the bar is a solid ink surface
+// at every scroll position: the walkthrough text must never tangle with it.
+//
+// Layout: logo far left, "Book an audit" centred (desktop), "See it work" far
+// right. "Book an audit" smooth-scrolls to the section on the current page, or
+// routes home to it if the current page has none. On narrow screens the centre
+// item drops beside "See it work" on the right so nothing gets cramped.
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const { path, navigate } = useRouter();
+  const onWalkthrough = path === "/see-it-work";
 
   useEffect(() => {
     // Flip state once the hero is mostly out of view. Cheap scroll listener,
@@ -17,30 +34,77 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const goToAudit = useCallback(
+    (event) => {
+      event.preventDefault();
+      const here = document.getElementById(AUDIT_ID);
+      if (here) {
+        scrollToTarget(here, { offset: AUDIT_OFFSET });
+        return;
+      }
+      // Not on this route: go home, then scroll once the section has painted.
+      navigate("/");
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => {
+          const target = document.getElementById(AUDIT_ID);
+          if (target) scrollToTarget(target, { offset: AUDIT_OFFSET });
+        })
+      );
+    },
+    [navigate]
+  );
+
   return (
     <header
       className={[
         "fixed inset-x-0 top-0 z-50",
         "transition-[background-color,backdrop-filter,border-color] duration-500 ease-out-brand",
-        scrolled
-          ? "border-b border-hairline bg-chrome backdrop-blur-md"
-          : "border-b border-transparent bg-transparent",
+        onWalkthrough
+          ? "border-b border-hairline bg-ink"
+          : scrolled
+            ? "border-b border-hairline bg-chrome backdrop-blur-md"
+            : "border-b border-transparent bg-transparent",
       ].join(" ")}
     >
-      <nav className="container-page flex h-16 items-center justify-between">
-        <a
-          href="#top"
-          aria-label="Correntum, back to top"
-          className="text-paper"
+      <nav className="container-page flex h-16 items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr]">
+        <Link
+          to="/"
+          aria-label="Correntum, home"
+          className="text-paper md:justify-self-start"
         >
           <Mark className="h-4 w-auto" title="Correntum" />
-        </a>
+        </Link>
+
+        {/* Centred on desktop only. */}
         <a
-          href="mailto:marcel@correntum.com"
-          className="text-caption uppercase tracking-[0.08em] text-text transition-opacity duration-300 ease-out-brand hover:opacity-70"
+          href={`/#${AUDIT_ID}`}
+          onClick={goToAudit}
+          className={`hidden md:inline-block md:justify-self-center ${navLink}`}
         >
-          Start a conversation
+          Book an audit
         </a>
+
+        <div className="flex items-center gap-6 md:justify-self-end">
+          {/* On narrow screens this sits beside "See it work" on the right. */}
+          <a
+            href={`/#${AUDIT_ID}`}
+            onClick={goToAudit}
+            className={`md:hidden ${navLink}`}
+          >
+            Book an audit
+          </a>
+          <Link
+            to="/see-it-work"
+            aria-current={onWalkthrough ? "page" : undefined}
+            className={`${navLink}${
+              onWalkthrough
+                ? " underline decoration-text-muted decoration-1 underline-offset-[6px]"
+                : ""
+            }`}
+          >
+            See it work
+          </Link>
+        </div>
       </nav>
     </header>
   );
