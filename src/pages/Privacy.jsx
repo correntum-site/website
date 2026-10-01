@@ -1,5 +1,8 @@
 import { usePageMeta } from "../lib/pageMeta";
+import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
 import { Needs } from "../components/Needs";
+
+const REVEAL_BLOCKS = ":scope > :not(section), :scope > section > *";
 
 // Privacy policy for Timeslot Business. A DRAFT: marked noindex, kept behind
 // no nav or footer link, and still carrying its draft banner, review notes and
@@ -17,10 +20,12 @@ export function Privacy() {
     noindex: true,
   });
 
+  const revealRef = useRevealOnScroll({ selector: REVEAL_BLOCKS });
+
   return (
     <main>
       <section id="top" className="section container-page">
-        <div className="doc">
+        <div className="doc" ref={revealRef}>
           <p className="draft-banner">
             Draft. Not legal advice. Needs review before publishing.
           </p>

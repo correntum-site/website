@@ -1,11 +1,11 @@
-import { useReveal } from "../hooks/useReveal";
+import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
 import { usePageMeta } from "../lib/pageMeta";
 import { Link } from "../lib/router";
 
 // Support and contact page. This is the Apple Support URL and carries the
-// company details for Meta. support@correntum.com is a live alias; the
-// remaining company facts stay as flagged placeholders until confirmed.
+// company details for Meta. support@correntum.com is a live alias.
 const SUPPORT_EMAIL = "support@correntum.com";
+const REVEAL_BLOCKS = ":scope > :not(section), :scope > section > *";
 
 export function Support() {
   usePageMeta({
@@ -14,21 +14,17 @@ export function Support() {
       "How to contact Correntum about Timeslot Business, what to put in a support email, and how to ask about your personal information.",
   });
 
-  const introRef = useReveal({ selector: "[data-reveal]", stagger: 0.06 });
+  const revealRef = useRevealOnScroll({ selector: REVEAL_BLOCKS });
 
   return (
     <main>
       <section id="top" className="section container-page">
-        <div className="doc">
-          <div ref={introRef}>
-            <h1 data-reveal className="reveal">
-              Support and contact
-            </h1>
-            <p data-reveal className="reveal lede">
-              Correntum makes Timeslot Business, a booking app for service
-              providers in South Africa. To contact Correntum, send us an email.
-            </p>
-          </div>
+        <div className="doc" ref={revealRef}>
+          <h1>Support and contact</h1>
+          <p className="lede">
+            Correntum makes Timeslot Business, a booking app for service
+            providers in South Africa. To contact Correntum, send us an email.
+          </p>
 
           <section aria-labelledby="contact">
             <h2 id="contact">Email us</h2>
