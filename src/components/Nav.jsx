@@ -22,6 +22,7 @@ export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const { path, navigate } = useRouter();
   const onWalkthrough = path === "/see-it-work";
+  const onProduct = path === "/timeslot-business";
   // Any route other than the home page has no hero behind the nav, so the bar
   // is a solid ink surface at every scroll position: the page text must never
   // tangle with a transparent bar.
@@ -88,15 +89,18 @@ export function Nav() {
           Book an audit
         </a>
 
-        <div className="flex items-center gap-6 md:justify-self-end">
-          {/* On narrow screens this sits beside "See it work" on the right. */}
-          <a
-            href={`/#${AUDIT_ID}`}
-            onClick={goToAudit}
-            className={`md:hidden ${navLink}`}
+        <div className="flex items-center gap-5 sm:gap-6 md:justify-self-end">
+          <Link
+            to="/timeslot-business"
+            aria-current={onProduct ? "page" : undefined}
+            className={`${navLink}${
+              onProduct
+                ? " underline decoration-text-muted decoration-1 underline-offset-[6px]"
+                : ""
+            }`}
           >
-            Book an audit
-          </a>
+            Timeslot Business
+          </Link>
           <Link
             to="/see-it-work"
             aria-current={onWalkthrough ? "page" : undefined}

@@ -2,8 +2,6 @@ import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
 import { usePageMeta } from "../lib/pageMeta";
 import { Link } from "../lib/router";
 
-const REVEAL_BLOCKS = ":scope > :not(section), :scope > section > *";
-
 // Timeslot Business product page. Content ported from Daniel's draft, kept
 // exactly as limited: nothing is claimed as live that is not built, planned
 // parts are labelled, no prices, customers or dates. Styled in the site's
@@ -15,33 +13,32 @@ export function TimeslotBusiness() {
       "Timeslot Business, by Correntum, is a booking app for independent service providers in South Africa. Their clients keep using WhatsApp and install nothing.",
   });
 
-  const revealRef = useRevealOnScroll({ selector: REVEAL_BLOCKS });
+  const revealRef = useRevealOnScroll({ selector: ".product-icon, .doc > *" });
 
   return (
     <main>
       <section id="top" className="section container-page">
-        <div className="doc" ref={revealRef}>
-          <p>
+        <div className="product-layout" ref={revealRef}>
+          <div className="product-layout__aside">
             <img
-              className="app-icon"
+              className="product-icon"
               src="/timeslot-business/media/timeslot-business-app-icon.png"
               alt="Timeslot Business app icon"
-              width="96"
-              height="96"
             />
-          </p>
-          <h1>Timeslot Business</h1>
-          <p className="lede">
-            One app on a service provider's phone that runs their business, while
-            their clients carry on using WhatsApp exactly as they do now.
-          </p>
-          <p>Your work. Your brand. Your slots.</p>
-          <p className="muted">
-            Timeslot Business is made by Correntum. It is not made by WhatsApp or
-            Meta.
-          </p>
+          </div>
+          <div className="doc">
+            <h1>Timeslot Business</h1>
+            <p className="lede">
+              One app on a service provider's phone that runs their business,
+              while their clients carry on using WhatsApp exactly as they do now.
+            </p>
+            <p>Your work. Your brand. Your slots.</p>
+            <p className="muted">
+              Timeslot Business is made by Correntum. It is not made by WhatsApp
+              or Meta.
+            </p>
 
-          <div className="card">
+            <div className="card">
             <h2 style={{ marginTop: 0 }}>Where the app is today</h2>
             <p>
               Timeslot Business is still being built. Today the app runs in a
@@ -200,11 +197,12 @@ export function TimeslotBusiness() {
             .
           </p>
 
-          <h2>Questions</h2>
-          <p>
-            See <Link to="/support">Support</Link> for how to contact Correntum
-            about Timeslot Business.
-          </p>
+            <h2>Questions</h2>
+            <p>
+              See <Link to="/support">Support</Link> for how to contact
+              Correntum about Timeslot Business.
+            </p>
+          </div>
         </div>
       </section>
     </main>
