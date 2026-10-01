@@ -2,10 +2,11 @@ import { useReveal } from "../hooks/useReveal";
 import { Mark } from "./Mark";
 import { Link } from "../lib/router";
 
-// The white mark and a legal block in muted caption size. Conversion lives in
-// the "Book an audit" section directly above, so the footer carries no CTA.
-// No registration number appears until one is confirmed, and no placeholder
-// stands in for it. No tax reference number anywhere.
+// The white mark, a footer nav, and the company's legal details in muted
+// caption size. Conversion lives in the "Book an audit" section directly above,
+// so the footer carries no CTA. The company details (legal name, CIPC
+// registration number, registered office address and support email) appear on
+// every page, as Apple and Meta expect. No tax reference number anywhere.
 //
 // The product and support pages are linked here. The Timeslot Business privacy
 // policy is deliberately NOT linked: it is an unreviewed draft, kept noindex
@@ -37,13 +38,25 @@ export function Footer() {
           </Link>
         </nav>
 
-        <p
+        <div
           data-reveal
           className="reveal mt-10 max-w-measure text-caption text-text-muted"
         >
-          Correntum (Pty) Ltd. Franschhoek, South Africa. We process personal
-          information in line with POPIA.
-        </p>
+          <p>
+            Correntum (Pty) Ltd. Registration number 2026/683805/07. 1236 Val de
+            Vie Boulevard, Paarl, Western Cape, 7646, South Africa. Contact{" "}
+            <a
+              href="mailto:support@correntum.com"
+              className="underline underline-offset-2 transition-opacity duration-300 ease-out-brand hover:opacity-70"
+            >
+              support@correntum.com
+            </a>
+            .
+          </p>
+          <p className="mt-3">
+            We process personal information in line with POPIA.
+          </p>
+        </div>
       </div>
     </footer>
   );

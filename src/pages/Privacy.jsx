@@ -114,9 +114,9 @@ export function Privacy() {
             <dt>Legal name</dt>
             <dd>Correntum (Pty) Ltd.</dd>
             <dt>Registration number</dt>
-            <dd><Needs>CIPC registration number</Needs></dd>
+            <dd>2026/683805/07</dd>
             <dt>Registered address</dt>
-            <dd><Needs>registered address</Needs></dd>
+            <dd>1236 Val de Vie Boulevard, Paarl, Western Cape, 7646</dd>
             <dt>Email</dt>
             <dd><a href={`mailto:${EMAIL}`}>{EMAIL}</a></dd>
           </dl>

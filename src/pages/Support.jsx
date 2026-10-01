@@ -1,6 +1,5 @@
 import { useReveal } from "../hooks/useReveal";
 import { usePageMeta } from "../lib/pageMeta";
-import { Needs } from "../components/Needs";
 import { Link } from "../lib/router";
 
 // Support and contact page. This is the Apple Support URL and carries the
@@ -60,13 +59,9 @@ export function Support() {
               <dt>Legal name</dt>
               <dd>Correntum (Pty) Ltd.</dd>
               <dt>Registration number</dt>
-              <dd>
-                <Needs>CIPC registration number</Needs>
-              </dd>
+              <dd>2026/683805/07</dd>
               <dt>Registered address</dt>
-              <dd>
-                <Needs>registered address</Needs>
-              </dd>
+              <dd>1236 Val de Vie Boulevard, Paarl, Western Cape, 7646</dd>
               <dt>Email</dt>
               <dd>
                 <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
