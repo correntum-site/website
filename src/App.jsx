@@ -15,6 +15,9 @@ import { Founders } from "./components/Founders";
 import { BookAudit } from "./components/BookAudit";
 import { Footer } from "./components/Footer";
 import { SeeItWork } from "./pages/SeeItWork";
+import { TimeslotBusiness } from "./pages/TimeslotBusiness";
+import { Support } from "./pages/Support";
+import { Privacy } from "./pages/Privacy";
 
 function Home() {
   return (
@@ -33,9 +36,28 @@ function Home() {
   );
 }
 
+// Normalise a path for matching: drop a trailing slash on everything but root,
+// so "/support" and "/support/" are the same route. The hosts (Vercel
+// vercel.json, Netlify public/_redirects) serve index.html for every path, so
+// a hard load of any route below works.
+function matchRoute(path) {
+  const route = path !== "/" && path.endsWith("/") ? path.slice(0, -1) : path;
+  switch (route) {
+    case "/see-it-work":
+      return <SeeItWork />;
+    case "/timeslot-business":
+      return <TimeslotBusiness />;
+    case "/support":
+      return <Support />;
+    case "/timeslot-business/privacy":
+      return <Privacy />;
+    default:
+      return <Home />;
+  }
+}
+
 function Routes() {
   const { path } = useRouter();
-  const isWalkthrough = path === "/see-it-work";
 
   // Route content swaps entirely, which moves every trigger start point.
   // Recalc once the new tree has painted.
@@ -53,7 +75,7 @@ function Routes() {
         Skip to content
       </a>
       <Nav />
-      {isWalkthrough ? <SeeItWork /> : <Home />}
+      {matchRoute(path)}
       <Footer />
     </>
   );

@@ -184,6 +184,213 @@
   }
 }
 
+@layer components {
+  /* Long-form content pages (Timeslot Business, Support, Privacy).
+     Same tokens, same Inter weights, same dark base and depth ramp as the
+     rest of the site. Semantic tags are styled here so the page components
+     stay readable. */
+  .doc {
+    max-width: 44rem;
+    color: var(--text);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+
+  .doc > * + * {
+    margin-top: 1.15rem;
+  }
+
+  .doc h1 {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  .doc h2 {
+    font-size: clamp(1.55rem, 3.2vw, 2.25rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    margin-top: 3.25rem;
+    scroll-margin-top: 6rem;
+  }
+
+  .doc h3 {
+    font-size: 1.2rem;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    margin-top: 2rem;
+    scroll-margin-top: 6rem;
+  }
+
+  .doc .lede {
+    font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+
+  .doc a {
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-color: var(--text-muted);
+    text-underline-offset: 3px;
+    transition: opacity 0.3s var(--ease-out);
+  }
+
+  .doc a:hover {
+    opacity: 0.7;
+  }
+
+  .doc ul,
+  .doc ol {
+    padding-left: 1.3rem;
+  }
+
+  .doc li + li {
+    margin-top: 0.5rem;
+  }
+
+  .doc li::marker {
+    color: var(--text-muted);
+  }
+
+  .doc strong {
+    font-weight: 600;
+  }
+
+  .doc .muted {
+    color: var(--text-muted);
+  }
+
+  /* Definition lists: company details, operator roles. */
+  .doc dl {
+    display: grid;
+    gap: 0.75rem 1.5rem;
+    margin-top: 0.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .doc dl {
+      grid-template-columns: max-content 1fr;
+    }
+  }
+
+  .doc dt {
+    font-size: 0.8125rem;
+    letter-spacing: 0.01em;
+    font-weight: 500;
+    color: var(--text-muted);
+    align-self: start;
+  }
+
+  .doc dd {
+    margin: 0;
+    color: var(--text);
+  }
+
+  /* Raised matte card, depth ramp only. */
+  .doc .card {
+    background: var(--surface-1);
+    border: 1px solid var(--hairline);
+    border-radius: 0.9rem;
+    padding: 1.4rem 1.6rem;
+  }
+
+  .doc .card > * + * {
+    margin-top: 0.75rem;
+  }
+
+  .doc .card dl {
+    margin-top: 0.25rem;
+  }
+
+  /* Operator grid on the privacy page. */
+  .doc .grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 720px) {
+    .doc .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Review note: a quiet, recessed aside. */
+  .doc .note {
+    border-left: 2px solid var(--hairline);
+    padding: 0.1rem 0 0.1rem 1rem;
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  /* Table of contents. */
+  .doc .toc {
+    border: 1px solid var(--hairline);
+    border-radius: 0.9rem;
+    padding: 1.4rem 1.6rem;
+    background: var(--surface-1);
+  }
+
+  .doc .toc h2 {
+    margin-top: 0;
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .doc .toc ol {
+    margin-top: 0.9rem;
+    columns: 2;
+    column-gap: 2rem;
+  }
+
+  @media (max-width: 560px) {
+    .doc .toc ol {
+      columns: 1;
+    }
+  }
+
+  /* Draft banner on the unpublished privacy policy. */
+  .doc .draft-banner {
+    display: inline-block;
+    border: 1px solid var(--hairline);
+    border-radius: 0.6rem;
+    background: var(--surface-2);
+    padding: 0.5rem 0.9rem;
+    font-size: 0.8125rem;
+    letter-spacing: 0.02em;
+    color: var(--text);
+  }
+
+  /* A value still to be supplied by the founders. Deliberately obvious in a
+     preview, never a real value, never guessed. */
+  .needs {
+    display: inline;
+    border: 1px dashed var(--text-muted);
+    border-radius: 0.3rem;
+    padding: 0 0.35em;
+    font-size: 0.85em;
+    color: var(--text-muted);
+    background: var(--surface-1);
+  }
+
+  .doc .app-icon {
+    width: 96px;
+    height: 96px;
+    border-radius: 1.2rem;
+    border: 1px solid var(--hairline);
+  }
+}
+
 /* Reduced motion: no translate, no parallax, no idle rotation.
    Every reveal collapses to a short opacity cross fade. */
 @media (prefers-reduced-motion: reduce) {

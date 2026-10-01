@@ -22,6 +22,10 @@ export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const { path, navigate } = useRouter();
   const onWalkthrough = path === "/see-it-work";
+  // Any route other than the home page has no hero behind the nav, so the bar
+  // is a solid ink surface at every scroll position: the page text must never
+  // tangle with a transparent bar.
+  const solidBar = path !== "/";
 
   useEffect(() => {
     // Flip state once the hero is mostly out of view. Cheap scroll listener,
@@ -59,7 +63,7 @@ export function Nav() {
       className={[
         "fixed inset-x-0 top-0 z-50",
         "transition-[background-color,backdrop-filter,border-color] duration-500 ease-out-brand",
-        onWalkthrough
+        solidBar
           ? "border-b border-hairline bg-ink"
           : scrolled
             ? "border-b border-hairline bg-chrome backdrop-blur-md"
