@@ -191,9 +191,7 @@ export function TimeslotBusiness() {
           <p>The app does not keep health or injury notes about clients.</p>
           <p>
             Read the{" "}
-            <Link to="/timeslot-business/privacy">
-              privacy policy for Timeslot Business
-            </Link>
+            <a href="/privacy">privacy policy for Timeslot Business</a>
             .
           </p>
 

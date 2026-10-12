@@ -3,6 +3,10 @@
 Scope only. No legal text, no app code, nothing pushed, no Meta or hosting setting touched.
 Written 12 October 2026 for Tom, Daniel and Marcel. Not legal advice.
 
+> **Superseded in part (12 Oct 2026, branch `legal/meta-pages`):** the pages now live at `/privacy`,
+> `/terms` and `/data-deletion` as static HTML (not the `/timeslot-business/...` paths suggested below).
+> The build items and settings sheet are in `docs/meta-submission.md`.
+
 **Tags.** [Certain] = read in a doc or in code, cited. [Likely] = strong inference, reason given.
 [Guessing] = flagged as a guess.
 

@@ -17,7 +17,6 @@ import { Footer } from "./components/Footer";
 import { SeeItWork } from "./pages/SeeItWork";
 import { TimeslotBusiness } from "./pages/TimeslotBusiness";
 import { Support } from "./pages/Support";
-import { Privacy } from "./pages/Privacy";
 
 function Home() {
   return (
@@ -38,8 +37,9 @@ function Home() {
 
 // Normalise a path for matching: drop a trailing slash on everything but root,
 // so "/support" and "/support/" are the same route. The hosts (Vercel
-// vercel.json, Netlify public/_redirects) serve index.html for every path, so
-// a hard load of any route below works.
+// vercel.json, Netlify public/_redirects) serve index.html only for the routes
+// below; any other path gets public/404.html. A new route needs a line there too.
+// The legal pages (/privacy, /terms, /data-deletion) are static HTML in public/.
 function matchRoute(path) {
   const route = path !== "/" && path.endsWith("/") ? path.slice(0, -1) : path;
   switch (route) {
@@ -49,8 +49,6 @@ function matchRoute(path) {
       return <TimeslotBusiness />;
     case "/support":
       return <Support />;
-    case "/timeslot-business/privacy":
-      return <Privacy />;
     default:
       return <Home />;
   }

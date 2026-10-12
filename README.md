@@ -17,9 +17,14 @@ npm run preview    # serve the build
 - `/see-it-work` a scroll-driven walkthrough of one exception (INV-88214),
   rebuilt in HTML, on representative sample data
 
+- `/timeslot-business`, `/support` the Timeslot Business product and support pages
+- `/privacy`, `/terms`, `/data-deletion` static HTML in `public/` (readable with
+  JavaScript off, for Meta's crawler); `/timeslot-business/privacy` redirects to `/privacy`
+
 Routing is a tiny history-API router in `src/lib/router.jsx`, no library.
-Static hosts need an SPA fallback so a hard load of `/see-it-work` serves
-`index.html`: `public/_redirects` (Netlify) and `vercel.json` (Vercel) are in.
+`vercel.json` (Vercel) and `public/_redirects` (Netlify) serve `index.html` for
+the SPA routes only; every other path gets `public/404.html` with status 404.
+A new SPA route needs a line in both.
 
 ## Stack
 
