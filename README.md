@@ -56,3 +56,4 @@ used only on `/see-it-work`, only for state indication.
   `src/components/Origin.jsx` and `src/components/Founders.jsx`; sections render
   correctly with them absent
 - Deploy (Netlify or Vercel), point the domain once mail is sorted
+Deployed on Vercel from this repository.
