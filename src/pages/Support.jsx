@@ -124,18 +124,14 @@ export function Support() {
             </p>
             <p>
               The{" "}
-              <Link to="/timeslot-business/privacy">
-                privacy policy for Timeslot Business
-              </Link>{" "}
+              <a href="/privacy">privacy policy for Timeslot Business</a>{" "}
               explains what information the app handles and why, who else receives
               it,{" "}
-              <Link to="/timeslot-business/privacy#rights">
-                your rights under POPIA
-              </Link>
+              <a href="/privacy#rights">your rights under POPIA</a>
               , and{" "}
-              <Link to="/timeslot-business/privacy#complain">
+              <a href="/privacy#complain">
                 how to complain to the Information Regulator
-              </Link>
+              </a>
               .
             </p>
           </section>
@@ -143,17 +139,9 @@ export function Support() {
           <section aria-labelledby="delete-account">
             <h2 id="delete-account">Delete your Timeslot Business account</h2>
             <p>
-              Deleting your account in the app is planned. It is in the product
-              plan and is not built yet. Once it is available, the steps will be
-              here.
-            </p>
-            <p>
-              For now, ask for deletion by email, as described above. The privacy
-              policy for Timeslot Business explains{" "}
-              <Link to="/timeslot-business/privacy#delete-your-data">
-                what happens to your information when your account is deleted
-              </Link>
-              .
+              The steps, what is deleted, what is kept and how long it takes are
+              on the <a href="/data-deletion">data deletion page</a>, for
+              businesses and for their clients.
             </p>
           </section>
 
@@ -164,9 +152,7 @@ export function Support() {
                 <Link to="/timeslot-business">What Timeslot Business does</Link>
               </li>
               <li>
-                <Link to="/timeslot-business/privacy">
-                  Privacy policy for Timeslot Business
-                </Link>
+                <a href="/privacy">Privacy policy for Timeslot Business</a>
               </li>
             </ul>
           </section>

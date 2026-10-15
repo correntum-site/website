@@ -185,7 +185,7 @@
 }
 
 @layer components {
-  /* Long-form content pages (Timeslot Business, Support, Privacy).
+  /* Long-form content pages (Timeslot Business, Support).
      Same tokens, same Inter weights, same dark base and depth ramp as the
      rest of the site. Semantic tags are styled here so the page components
      stay readable. */
@@ -387,18 +387,6 @@
     font-size: 0.8125rem;
     letter-spacing: 0.02em;
     color: var(--text);
-  }
-
-  /* A value still to be supplied by the founders. Deliberately obvious in a
-     preview, never a real value, never guessed. */
-  .needs {
-    display: inline;
-    border: 1px dashed var(--text-muted);
-    border-radius: 0.3rem;
-    padding: 0 0.35em;
-    font-size: 0.85em;
-    color: var(--text-muted);
-    background: var(--surface-1);
   }
 
   .doc .app-icon {

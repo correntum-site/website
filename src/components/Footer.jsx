@@ -8,9 +8,9 @@ import { Link } from "../lib/router";
 // registration number, registered office address and support email) appear on
 // every page, as Apple and Meta expect. No tax reference number anywhere.
 //
-// The product and support pages are linked here. The Timeslot Business privacy
-// policy is deliberately NOT linked: it is an unreviewed draft, kept noindex
-// and reachable only by its direct URL until it has had a legal review.
+// The legal pages (privacy, terms, data deletion) are static HTML in public/,
+// readable with JavaScript off for Meta's crawler, so they are plain <a> links:
+// the client-side router would render the home page for them.
 export function Footer() {
   const ref = useReveal({ selector: "[data-reveal]", stagger: 0.06 });
 
@@ -36,6 +36,19 @@ export function Footer() {
           >
             Support
           </Link>
+          {[
+            ["/privacy", "Privacy"],
+            ["/terms", "Terms"],
+            ["/data-deletion", "Data deletion"],
+          ].map(([href, label]) => (
+            <a
+              key={href}
+              href={href}
+              className="transition-opacity duration-300 ease-out-brand hover:opacity-70"
+            >
+              {label}
+            </a>
+          ))}
         </nav>
 
         <div
