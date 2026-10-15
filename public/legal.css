@@ -21,13 +21,6 @@ h1 { font-size: 2rem; line-height: 1.2; margin: 2.5rem 0 0.5rem; }
 h2 { font-size: 1.3rem; margin: 2.5rem 0 0.5rem; padding-top: 1rem; border-top: 1px solid var(--hairline); }
 h3 { font-size: 1.05rem; margin: 1.5rem 0 0.25rem; }
 .meta, .muted { color: var(--muted); }
-.draft {
-  border: 1px solid var(--paper);
-  padding: 0.75rem 1rem;
-  margin-top: 1.5rem;
-  font-weight: 600;
-}
-.missing { background: rgba(255, 254, 255, 0.12); padding: 0 0.25rem; }
 table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.95rem; }
 th, td { text-align: left; vertical-align: top; padding: 0.5rem; border-bottom: 1px solid var(--hairline); }
 dt { font-weight: 600; margin-top: 0.75rem; }
